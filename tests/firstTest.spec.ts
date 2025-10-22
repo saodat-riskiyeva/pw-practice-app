@@ -1,23 +1,31 @@
 import { test } from "@playwright/test";
 
-// test.beforeAll(async () => {  });
-
 test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:4200/");
-
-  await page.getByText("Forms").click();
 });
 
-test("the first test", async ({ page }) => {
-  await page.getByText("Form Layouts").click();
+test.describe("test suite 1", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.getByText("Charts").click();
+  });
+
+  test("test 1: 1", async ({ page }) => {
+    await page.getByText("Form Layouts").click();
+  });
+  test("test 1: 2", async ({ page }) => {
+    await page.getByText("Datepicker").click();
+  });
 });
 
-test("navigate to datepicker page", async ({ page }) => {
-  await page.getByText("Datepicker").click();
+test.describe("test suite 2", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.getByText("Forms").click();
+  });
+
+  test("test 2: 1", async ({ page }) => {
+    await page.getByText("Form Layouts").click();
+  });
+  test("test 2: 2", async ({ page }) => {
+    await page.getByText("Datepicker").click();
+  });
 });
-
-// test.afterEach(async ({ page }) => {});
-
-// test.describe("test suite 1", () => {
-//   test("the second test", () => {});
-// });
