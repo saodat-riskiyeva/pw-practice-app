@@ -53,4 +53,10 @@ test("locating child elements", async ({ page }) => {
     .locator("nb-radio")
     .locator(':text-is("Option 2")')
     .click();
+
+  await page
+    .locator("nb-card")
+    .getByRole("button", { name: "Sign in" })
+    .first()
+    .click();
 });
