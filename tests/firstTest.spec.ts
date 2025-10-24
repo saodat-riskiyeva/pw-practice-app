@@ -27,4 +27,10 @@ test("locator syntax rules", async ({ page }) => {
 
   // by XPath
   await page.locator("//input[@placeholder='Email']");
+
+  // by partial text match
+  await page.locator(":text('Sign in')");
+
+  // by exact text match
+  await page.locator(":text-is('Sign in')");
 });
