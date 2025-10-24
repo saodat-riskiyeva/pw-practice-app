@@ -44,6 +44,8 @@ test("interact with elements by roles", async ({ page }) => {
 
   await page.getByText("Using the Grid").click();
   await page.getByTitle("IoT Dashboard").click();
+});
 
-  //   await page.getByTestId("").click();
+test("locating child elements", async ({ page }) => {
+  await page.locator('nb-card nb-radio :text-is("Option 1")').click();
 });
