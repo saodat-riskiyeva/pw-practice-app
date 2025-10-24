@@ -48,4 +48,9 @@ test("interact with elements by roles", async ({ page }) => {
 
 test("locating child elements", async ({ page }) => {
   await page.locator('nb-card nb-radio :text-is("Option 1")').click();
+  await page
+    .locator("nb-card")
+    .locator("nb-radio")
+    .locator(':text-is("Option 2")')
+    .click();
 });
