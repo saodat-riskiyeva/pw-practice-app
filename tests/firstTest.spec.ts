@@ -2,30 +2,29 @@ import { test } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:4200/");
+  await page.getByText("Forms").click();
+  await page.getByText("Form Layouts").click();
 });
 
-test.describe("test suite 1", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.getByText("Charts").click();
-  });
+test("locator syntax rules", async ({ page }) => {
+  // by tag name
+  await page.locator("input");
 
-  test("test 1: 1", async ({ page }) => {
-    await page.getByText("Form Layouts").click();
-  });
-  test("test 1: 2", async ({ page }) => {
-    await page.getByText("Datepicker").click();
-  });
-});
+  // by id
+  await page.locator("#inputEmail1");
 
-test.describe("test suite 2", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.getByText("Forms").click();
-  });
+  // by class name
+  await page.locator(".shape-rectangle");
 
-  test("test 2: 1", async ({ page }) => {
-    await page.getByText("Form Layouts").click();
-  });
-  test("test 2: 2", async ({ page }) => {
-    await page.getByText("Datepicker").click();
-  });
+  // by attribute
+  await page.locator("[placeholder='Email']");
+
+  // by Class value
+  await page.locator("[class='input-full-width size-medium shape-rectangle']");
+
+  // combine selectors
+  await page.locator("input[placeholder='Email'].shape-rectangle");
+
+  // by XPath
+  await page.locator("//input[@placeholder='Email']");
 });
