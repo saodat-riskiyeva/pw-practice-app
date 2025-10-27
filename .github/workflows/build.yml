@@ -1,0 +1,35 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18" # под Angular 14 нормально
+          cache: "npm"
+
+      - name: Use npm config
+        run: |
+          echo "legacy-peer-deps=true" >> .npmrc
+          echo "audit=false" >> .npmrc
+          echo "fund=false" >> .npmrc
+
+      - name: Install deps (no lock)
+        run: npm install --omit=optional
+
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Tests
+        run: npm test --if-present
