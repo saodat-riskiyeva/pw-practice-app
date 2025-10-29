@@ -8,5 +8,5 @@ test.beforeEach(async ({ page }) => {
 test("auto waiting", async ({ page }) => {
   const successButton = page.locator(".bg-success");
 
-  await successButton.click();
+  await successButton.click({ timeout: 5000 });
 });
